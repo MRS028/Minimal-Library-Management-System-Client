@@ -1,5 +1,5 @@
-import App from '@/App';
-import React from 'react'
+import { createBrowserRouter } from "react-router-dom";
+import App from "../App";
 
 const routes = createBrowserRouter([
   {
@@ -9,4 +9,4 @@ const routes = createBrowserRouter([
 ])
 
 export default routes
-import { createBrowserRouter } from "react-router-dom";
+
