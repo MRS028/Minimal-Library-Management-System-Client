@@ -22,7 +22,7 @@ const Footer: React.FC = () => {
           {/* Brand Section */}
           <div className="space-y-4 lg:col-span-2">
             <Link to="/" className="text-xl font-bold flex items-center space-x-2">
-              <BookOpen className="h-6 w-6 text-primary" />
+              <BookOpen className="h-6 w-6 mt-1 text-primary" />
               <span className="font-semibold text-foreground">LibraryHub</span>
             </Link>
             <p className="text-muted-foreground text-sm max-w-md">
@@ -57,12 +57,12 @@ const Footer: React.FC = () => {
             <h3 className="text-sm font-semibold uppercase tracking-wider text-foreground">Get In Touch</h3>
             <div className="space-y-3 text-muted-foreground">
               <a href="mailto:support@libraryhub.com" className="flex items-center space-x-2 text-sm hover:text-primary transition-colors">
-                <Mail className="w-4 h-4" />
+                <Mail className="w-4 h-3 mt-1" />
                 <span>support@libraryhub.com</span>
               </a>
               <p className="flex items-center space-x-2 text-sm">
                 <MapPin className="w-4 h-4" />
-                <span>123 Knowledge Ave, Bookville</span>
+                <span>1100 Bangla Bazar, Dhaka</span>
               </p>
             </div>
           </div>
