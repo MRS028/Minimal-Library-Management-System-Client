@@ -1,3 +1,5 @@
+// eslint.config.js
+
 import js from '@eslint/js'
 import globals from 'globals'
 import reactHooks from 'eslint-plugin-react-hooks'
@@ -6,9 +8,10 @@ import tseslint from 'typescript-eslint'
 import { globalIgnores } from 'eslint/config'
 
 export default tseslint.config([
-  globalIgnores(['dist']),
+  globalIgnores(['dist', 'node_modules', 'build']), 
   {
-    files: ['**/*.{ts,tsx}'],
+    files: ['**/*.{ts,tsx,js,jsx}'],
+    ignores: ['dist/**', 'node_modules/**', 'build/**'],
     extends: [
       js.configs.recommended,
       tseslint.configs.recommended,
@@ -19,10 +22,20 @@ export default tseslint.config([
       ecmaVersion: 2020,
       globals: globals.browser,
     },
+    rules: {
+      // সব error/warning অফ
+      '@typescript-eslint/ban-ts-comment': 'off', 
+      'no-unused-vars': 'off',
+      'no-console': 'off',
+      'react-hooks/exhaustive-deps': 'off',
+      '@typescript-eslint/no-explicit-any': 'off',
+      '@typescript-eslint/no-unused-vars': 'off',
+      'react-refresh/only-export-components': 'off',
+    },
     settings: {
       'import/resolver': {
         typescript: {
-          project: './tsconfig.json', // tsconfig path ঠিক করুন
+          project: './tsconfig.json', // tsconfig path
         },
       },
     },

@@ -1,5 +1,6 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 import type { Book } from "../types/bookTypes";
+import type { RootState } from "../store/store";
 
 interface BookState {
   selectedBook: Book | null;
@@ -45,6 +46,7 @@ const bookSlice = createSlice({
   },
 });
 
+// Actions
 export const {
   setSelectedBook,
   setSearchQuery,
@@ -53,4 +55,12 @@ export const {
   clearFilters,
 } = bookSlice.actions;
 
+// Selector for the selected book
+export const selectSelectedBook = (state: RootState) => state.books.selectedBook;
+
+// Optional: selector for search query and filters if needed
+export const selectBookFilters = (state: RootState) => state.books.filters;
+export const selectSearchQuery = (state: RootState) => state.books.searchQuery;
+
+// Reducer
 export default bookSlice.reducer;

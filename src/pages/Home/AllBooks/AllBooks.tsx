@@ -4,15 +4,15 @@ import { toast } from "sonner";
 import { Edit, Trash2, BookOpen, Search, Plus, Filter, X } from "lucide-react";
 
 // Shadcn UI Components
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import { Button } from "../../../components/ui/button";
+import { Input } from "../../../components/ui/input";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
+} from "../../../components/ui/select";
 import {
   Table,
   TableBody,
@@ -20,16 +20,21 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+} from "../../../components/ui/table";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "../../../components/ui/card";
 import { Badge } from "../../../components/ui/badge";
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from "@/components/ui/tooltip";
-import { Skeleton } from "@/components/ui/skeleton";
+} from "../../../components/ui/tooltip";
+import { Skeleton } from "../../../components/ui/skeleton";
 import {
   useDeleteBookMutation,
   useGetAllBooksQuery,
@@ -50,7 +55,12 @@ const AllBooks = () => {
   const [genreFilter, setGenreFilter] = useState("all");
   const [availabilityFilter, setAvailabilityFilter] = useState("all");
 
-  const booksData: IBook[] = Array.isArray(books) ? books : (books?.data ?? []);
+  let booksData: IBook[] = [];
+  if (Array.isArray(books)) {
+    booksData = books as IBook[];
+  } else if (books && Array.isArray((books as any).data)) {
+    booksData = (books as any).data as IBook[];
+  }
 
   // Confirm delete book using sonner toast
   const confirmDelete = (bookId: string, bookTitle: string) => {
@@ -61,7 +71,9 @@ const AllBooks = () => {
     });
   };
 
-  const uniqueGenres = Array.from(new Set(booksData.map((book) => book.genre))).sort();
+  const uniqueGenres = Array.from(
+    new Set(booksData.map((book) => book.genre))
+  ).sort();
 
   const filteredBooks = booksData.filter((book: IBook) => {
     const matchesSearch =
@@ -173,7 +185,10 @@ const AllBooks = () => {
                 ))}
               </SelectContent>
             </Select>
-            <Select value={availabilityFilter} onValueChange={setAvailabilityFilter}>
+            <Select
+              value={availabilityFilter}
+              onValueChange={setAvailabilityFilter}
+            >
               <SelectTrigger>
                 <SelectValue placeholder="Filter by availability" />
               </SelectTrigger>
@@ -199,10 +214,16 @@ const AllBooks = () => {
                 <TableHeader>
                   <TableRow>
                     <TableHead>Title</TableHead>
-                    <TableHead className="hidden md:table-cell">Author</TableHead>
-                    <TableHead className="hidden lg:table-cell">Genre</TableHead>
+                    <TableHead className="hidden md:table-cell">
+                      Author
+                    </TableHead>
+                    <TableHead className="hidden lg:table-cell">
+                      Genre
+                    </TableHead>
                     <TableHead className="hidden lg:table-cell">ISBN</TableHead>
-                    <TableHead className="hidden lg:table-cell">Copies</TableHead>
+                    <TableHead className="hidden lg:table-cell">
+                      Copies
+                    </TableHead>
                     <TableHead>Status</TableHead>
                     <TableHead className="text-right">Actions</TableHead>
                   </TableRow>
@@ -210,13 +231,25 @@ const AllBooks = () => {
                 <TableBody>
                   {filteredBooks.map((book: IBook) => (
                     <TableRow key={book._id}>
-                      <TableCell className="font-medium">{book.title}</TableCell>
-                      <TableCell className="hidden md:table-cell">{book.author}</TableCell>
-                      <TableCell className="hidden lg:table-cell">{book.genre}</TableCell>
-                      <TableCell className="hidden lg:table-cell">{book.isbn}</TableCell>
-                      <TableCell className="hidden px-6 lg:table-cell">{book.copies}</TableCell>
+                      <TableCell className="font-medium">
+                        {book.title}
+                      </TableCell>
+                      <TableCell className="hidden md:table-cell">
+                        {book.author}
+                      </TableCell>
+                      <TableCell className="hidden lg:table-cell">
+                        {book.genre}
+                      </TableCell>
+                      <TableCell className="hidden lg:table-cell">
+                        {book.isbn}
+                      </TableCell>
+                      <TableCell className="hidden px-6 lg:table-cell">
+                        {book.copies}
+                      </TableCell>
                       <TableCell>
-                        <Badge variant={book.available ? "default" : "destructive"}>
+                        <Badge
+                          variant={book.available ? "default" : "destructive"}
+                        >
                           {book.available ? "Available" : "Unavailable"}
                         </Badge>
                       </TableCell>
@@ -245,7 +278,9 @@ const AllBooks = () => {
                               variant="ghost"
                               size="icon"
                               className="text-destructive hover:text-destructive"
-                              onClick={() => confirmDelete(book._id, book.title)}
+                              onClick={() =>
+                                confirmDelete(book._id, book.title)
+                              }
                             >
                               <Trash2 className="h-4 w-4" />
                             </Button>
@@ -279,7 +314,9 @@ const AllBooks = () => {
               <div className="text-center py-16 px-6">
                 <h3 className="text-lg font-semibold">No Books Found</h3>
                 <p className="text-muted-foreground mt-2 mb-4 text-sm">
-                  {searchQuery || genreFilter !== "all" || availabilityFilter !== "all"
+                  {searchQuery ||
+                  genreFilter !== "all" ||
+                  availabilityFilter !== "all"
                     ? "Try adjusting your search or filters to find what you're looking for."
                     : "It looks like there are no books yet. Why not add one?"}
                 </p>

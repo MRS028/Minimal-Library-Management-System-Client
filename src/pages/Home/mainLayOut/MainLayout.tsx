@@ -1,19 +1,16 @@
-import {  Outlet } from "react-router-dom";
-import Navbar from "../../Shared/NavBar";
+import { Outlet } from "react-router-dom";
+import Navbar from "../../Shared/Navbar";
 import Footer from "../../Shared/Footer";
 
-
 export default function MainLayout() {
-    return(
-       <div>
+  return (
+    <div>
       <Navbar />
 
       <main className="container w-max-7xl mx-auto p-4 min-h-screen">
-        <Outlet /> 
+        <Outlet />
       </main>
-      <Footer/>
-
-      
+      <Footer />
     </div>
-    )
+  );
 }

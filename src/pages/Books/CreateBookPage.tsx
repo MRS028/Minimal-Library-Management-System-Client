@@ -1,16 +1,22 @@
-import { useNavigate } from 'react-router-dom';
-import { useAddBookMutation } from '../../redux/api/booksApi';
-import { toast } from 'sonner';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Textarea } from '@/components/ui/textarea';
-import type { Book } from '../../redux/types/bookTypes';
-import useScrollToTop from '../../useHooks/useScrollUp';
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import { useAddBookMutation } from "../../redux/api/booksApi";
+import { toast } from "sonner";
+import { Button } from "../../components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "../../components/ui/card";
+import { Input } from "../../components/ui/input";
+import { Label } from "../../components/ui/label";
+import { Textarea } from "../../components/ui/textarea";
+import type { Book } from "../../redux/types/bookTypes";
+import useScrollToTop from "../../useHooks/useScrollUp";
 
 // Book type
-
 
 const CreateBookPage = () => {
   const [addBook, { isLoading }] = useAddBookMutation();
@@ -21,22 +27,22 @@ const CreateBookPage = () => {
     e.preventDefault();
 
     const formData = new FormData(e.currentTarget);
-    const bookData: Omit<Book, '_id'> = {
-      title: formData.get('title') as string,
-      author: formData.get('author') as string,
-      genre: formData.get('genre') as string,
-      isbn: formData.get('isbn') as string,
-      description: (formData.get('description') as string) || '',
-      copies: Number(formData.get('copies')),
-      available: Number(formData.get('copies')) > 0,
+    const bookData: Omit<Book, "_id"> = {
+      title: formData.get("title") as string,
+      author: formData.get("author") as string,
+      genre: formData.get("genre") as string,
+      isbn: formData.get("isbn") as string,
+      description: (formData.get("description") as string) || "",
+      copies: Number(formData.get("copies")),
+      available: Number(formData.get("copies")) > 0,
     };
 
     try {
       await addBook(bookData).unwrap();
-      toast.success('Book added successfully');
-      navigate('/all-books');
+      toast.success("Book added successfully");
+      navigate("/all-books");
     } catch (error) {
-      toast.error('Failed to add book');
+      toast.error("Failed to add book");
     }
   };
 
@@ -77,23 +83,13 @@ const CreateBookPage = () => {
             {/* Genre */}
             <div className="space-y-2">
               <Label htmlFor="genre">Genre *</Label>
-              <Input
-                id="genre"
-                name="genre"
-                placeholder="Genre"
-                required
-              />
+              <Input id="genre" name="genre" placeholder="Genre" required />
             </div>
 
             {/* ISBN */}
             <div className="space-y-2">
               <Label htmlFor="isbn">ISBN *</Label>
-              <Input
-                id="isbn"
-                name="isbn"
-                placeholder="ISBN"
-                required
-              />
+              <Input id="isbn" name="isbn" placeholder="ISBN" required />
             </div>
 
             {/* Description */}
@@ -122,7 +118,7 @@ const CreateBookPage = () => {
 
             {/* Submit Button */}
             <Button type="submit" disabled={isLoading} className="w-full">
-              {isLoading ? 'Adding Book...' : 'Add Book'}
+              {isLoading ? "Adding Book..." : "Add Book"}
             </Button>
           </form>
         </CardContent>

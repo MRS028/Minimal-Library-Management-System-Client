@@ -4,6 +4,8 @@ import AllBooks from "../pages/Home/AllBooks/AllBooks";
 import BookPage from "../pages/Books/BookPage";
 import EditBookPage from "../pages/Books/EditBookPage";
 import CreateBookPage from "../pages/Books/CreateBookPage";
+import BorrowPage from "../pages/BorrowPage/BorrowPage";
+import BookSummaryPage from "../pages/BorrowPage/BorrowSummaryPage";
 
 
 const routes = createBrowserRouter([
@@ -33,11 +35,11 @@ const routes = createBrowserRouter([
       },
       {
         path: '/borrow/:bookId',
-        // element: <BorrowPage />,
+        element: <BorrowPage />,
       },
       {
         path: '/borrow-summary',
-        // element: <BorrowSummaryPage />,
+        element: <BookSummaryPage />,
       },
     ],
   },

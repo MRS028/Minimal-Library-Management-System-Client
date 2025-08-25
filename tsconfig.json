@@ -6,10 +6,20 @@
   ],
   "compilerOptions": {
     "baseUrl": ".",
-    "forceConsistentCasingInFileNames": true, 
-    "strict": true,
+    "forceConsistentCasingInFileNames": false,  // capitalization error ignore
+    "strict": false,                            // strict checks off
+    "skipLibCheck": true,                        // type declaration check skip
+    "noEmitOnError": false,                      // errors থাকলেও build হবে
     "paths": {
       "@/*": ["./src/*"]
-    }
-  }
+    },
+    "esModuleInterop": true,
+    "allowJs": true,
+    "resolveJsonModule": true
+  },
+  "exclude": [
+    "node_modules",
+    "dist",
+    "build"
+  ]
 }

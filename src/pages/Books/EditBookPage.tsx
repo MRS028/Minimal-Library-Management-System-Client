@@ -1,12 +1,12 @@
 import { useNavigate, useParams } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from '../../redux/hooks/hooks';
+import {  useAppSelector } from '../../redux/hooks/hooks';
 import { useUpdateBookMutation } from '../../redux/api/booksApi';
 import { toast } from 'sonner';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Textarea } from '@/components/ui/textarea';
+import { Button } from '../../components/ui/button';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../../components/ui/card';
+import { Input } from '../../components/ui/input';
+import { Label } from '../../components/ui/label';
+import { Textarea } from '../../components/ui/textarea';
 import useScrollToTop from '../../useHooks/useScrollUp';
 
 // Book type
@@ -24,7 +24,7 @@ interface Book {
 const EditBookPage = () => {
   const { bookId } = useParams<{ bookId: string }>();
   const navigate = useNavigate();
-  const dispatch = useAppDispatch();
+  // const dispatch = useAppDispatch();
   useScrollToTop();
 
   // Redux slice থেকে selectedBook fetch
