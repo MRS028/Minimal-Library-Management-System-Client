@@ -6,6 +6,7 @@ import EditBookPage from "../pages/Books/EditBookPage";
 import CreateBookPage from "../pages/Books/CreateBookPage";
 import BorrowPage from "../pages/BorrowPage/BorrowPage";
 import BookSummaryPage from "../pages/BorrowPage/BorrowSummaryPage";
+import HomePage from "../pages/Home/HomePage/HomePage";
 
 
 const routes = createBrowserRouter([
@@ -15,7 +16,7 @@ const routes = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <AllBooks />,
+        element: <HomePage />,
       },
       {
         path: '/all-books',
