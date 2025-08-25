@@ -61,7 +61,7 @@ const HomePage = () => {
     e.preventDefault();
     if (searchQuery.trim()) {
       // In a real app, this would filter books based on search query
-      navigate('/books');
+      navigate('/all-books');
     }
   };
 

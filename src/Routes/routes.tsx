@@ -7,6 +7,7 @@ import CreateBookPage from "../pages/Books/CreateBookPage";
 import BorrowPage from "../pages/BorrowPage/BorrowPage";
 import BookSummaryPage from "../pages/BorrowPage/BorrowSummaryPage";
 import HomePage from "../pages/Home/HomePage/HomePage";
+import NotFoundPage from "../pages/Shared/NotFoundPage";
 
 
 const routes = createBrowserRouter([
@@ -42,6 +43,10 @@ const routes = createBrowserRouter([
         path: '/borrow-summary',
         element: <BookSummaryPage />,
       },
+      {
+        path: '*',
+        element: <NotFoundPage />,
+      }
     ],
   },
 ]);
