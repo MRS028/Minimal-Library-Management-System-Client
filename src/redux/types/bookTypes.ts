@@ -9,6 +9,10 @@ export interface Book {
   available: boolean;
 }
 
+export interface IBook extends Book {
+    isBorrowed: boolean;
+}
+
 export interface Borrow {
   _id: string;
   bookId: string;

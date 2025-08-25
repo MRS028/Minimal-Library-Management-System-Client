@@ -5,7 +5,8 @@ import type { Borrow, BorrowSummary } from '../types/bookTypes';
 export const borrowApi = createApi({
   reducerPath: 'borrowApi',
   baseQuery: fetchBaseQuery({ 
-    baseUrl: process.env.BOOK_API_URL,
+    //@ts-expect-error Reason for suppressing error: react-redux not being used currently
+    baseUrl: import.meta.env.VITE_API_BASE_URL,
   }),
   tagTypes: ['Borrow'],
   endpoints: (builder) => ({

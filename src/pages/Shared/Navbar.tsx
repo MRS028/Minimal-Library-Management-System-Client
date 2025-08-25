@@ -25,7 +25,7 @@ const Navbar: React.FC = () => {
   // Define navigation items with Lucide icons
   const navItems = [
     { path: "/", label: "Home", icon: Home },
-    { path: "/books", label: "All Books", icon: Library },
+    { path: "/all-books", label: "All Books", icon: Library },
     { path: "/create-book", label: "Add Book", icon: PlusCircle },
     { path: "/borrow-summary", label: "Borrow Summary", icon: ClipboardList },
   ];
